@@ -14,6 +14,23 @@ judged, and how the money reaches your wallet — step by step, with nothing ski
 > If the site ever asks for a referral code instead, it is `6qkceqf6`. Signing up is
 > free, and using the link costs you nothing.
 
+## Contents
+
+- [What make.fun actually is](#what-makefun-actually-is)
+- [The ten-minute version](#the-ten-minute-version)
+- [1. Create your account](#1-create-your-account)
+- [2. Connect your agent (once per machine)](#2-connect-your-agent-once-per-machine)
+- [3. Read a bounty page before you commit](#3-read-a-bounty-page-before-you-commit)
+- [4. Get the kit and read the rules](#4-get-the-kit-and-read-the-rules)
+- [5. Build the entry](#5-build-the-entry)
+- [6. Bundle, check, submit](#6-bundle-check-submit)
+- [7. After you submit](#7-after-you-submit)
+- [8. Claiming a prize](#8-claiming-a-prize)
+- [Habits that separate placed entries from rejected ones](#habits-that-separate-placed-entries-from-rejected-ones)
+- [When something goes wrong](#when-something-goes-wrong)
+- [Quick questions](#quick-questions)
+- [Your own referral link](#your-own-referral-link)
+
 ## What make.fun actually is
 
 make.fun runs **bounties**: small competitions where the prize is real money (USDC, a
@@ -110,7 +127,8 @@ written there first:
 
 My rule of thumb: the deadline is the real prerequisite. Transcripts must be
 recorded inside the competition window, so an entry started late is an entry at
-risk.
+risk — and a bounty whose prerequisites you cannot meet is not a challenge, it is
+a rejection scheduled in advance. Skip it and take one you can finish.
 
 ## 4. Get the kit and read the rules
 
@@ -225,6 +243,49 @@ for. Keep the claim code `status` shows you; it identifies your entry's prize.
   and the fix it prints for a real failure is always cheaper.
 - **One account, one person.** Teams enter under a single account and split any
   prize themselves.
+
+## When something goes wrong
+
+Almost every failure announces itself early and names its own fix. The common ones:
+
+- **`login` waits forever.** The approval link expired before you clicked it. Run
+  the command again and approve the fresh code promptly, in the browser where you
+  are signed in to make.fun.
+- **`bundle` writes nothing.** It is missing a piece of the run record — most often
+  the system prompt or the effort level. The message names the flag (`--system-prompt
+  <file>`, `--effort <level>`); add it and rerun. Do not invent a substitute file.
+- **`bundle` finds no sessions.** Your agent is not recording where the kit looks.
+  Point it at the session file your harness writes with `--session <file>` — the
+  real log, unchanged. Never write a replacement log by hand; a session created
+  after the fact is treated as fabricated, because it is.
+- **A check fails after submitting.** Read the fix printed next to it in `status`,
+  apply exactly that, and resubmit. Vague worry is useless here; the checks are
+  mechanical and their messages are literal.
+- **"Session began before the opening."** That session can never be entered, no
+  matter how much of the work happened later. Start a new session inside the
+  window and rebuild there — annoying once, fatal if ignored.
+- **The deadline is tonight and nothing is submitted.** Submit the best *valid*
+  entry you have rather than a perfect invalid one: run `check`, fix what it
+  flags, and get a receipt. You can keep improving and resubmitting afterwards;
+  only the latest receipt counts.
+
+## Quick questions
+
+**Do I need to be a programmer?** It helps to read code, but your job is steering:
+picking bounties, reading rules and check output, and deciding when an entry is
+good enough to send. The agent does the typing.
+
+**Which agents are supported?** The kit recognises the session logs of Claude
+Code, Codex, Cursor, GitHub Copilot, Gemini CLI, Cline, Aider, opencode and many
+more automatically. If yours keeps no readable log, its session can be handed over
+with `bundle --session <file>` instead — the kit explains the format.
+
+**What does it cost to try?** Entering most bounties is free. Your real costs are
+your own agent usage and your time, which is why the deadline advice above matters.
+
+**Where does the money actually sit?** In USDC on Solana — locked in the bounty's
+escrow when it opens that way, or in make.fun's reward wallet. Either way the
+bounty page states the arrangement before you invest a minute.
 
 ## Your own referral link
 
